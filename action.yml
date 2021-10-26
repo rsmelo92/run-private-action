@@ -1,12 +1,13 @@
 name: 'Run private script'
 description: 'Run private script and clean afterwards'
 
-
 inputs:
   repo:
     description: 'What repo to run'
     required: true
-
+  token:
+    description: 'Github token'
+    required: true
 
 runs:
   using: "composite"
@@ -16,7 +17,7 @@ runs:
       with:
         submodules: true
         repository: ${{ inputs.action }}
-        token: ${{ secrets.GH_ACCESS_TOKEN }}
+        token: ${{ secrets.token }}
         path: ./.private-actions
 
     - run: echo "Script available in ./.private-actions"
