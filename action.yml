@@ -1,0 +1,27 @@
+name: 'Run private script'
+description: 'Run private script and clean afterwards'
+
+
+inputs:
+  repo:
+    description: 'What repo to run'
+    required: true
+
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout private action
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+        repository: ${{ inputs.action }}
+        token: ${{ secrets.GH_ACCESS_TOKEN }}
+        path: ./.private-actions
+
+    - run: echo "Script available in ./.private-actions"
+      shell: bash
+    
+    - uses: webiny/action-post-run@2.0.1
+      with:
+        run: rm -rf ./.private-actions
