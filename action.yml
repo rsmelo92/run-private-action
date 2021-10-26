@@ -17,7 +17,7 @@ runs:
       with:
         submodules: true
         repository: ${{ inputs.action }}
-        token: ${{ secrets.token }}
+        token: ${{ inputs.token }}
         path: ./.private-actions
 
     - run: echo "Script available in ./.private-actions"
