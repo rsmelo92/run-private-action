@@ -20,9 +20,6 @@ runs:
         token: ${{ inputs.token }}
         path: ./.private-actions
 
-    - run: echo "Script available in ./.private-actions"
+    - name: Post checkout
+      run: echo "Actions available in ./.private-actions"
       shell: bash
-    
-    - uses: webiny/action-post-run@2.0.1
-      with:
-        run: rm -rf ./.private-actions
